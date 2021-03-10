@@ -11,12 +11,8 @@ public:
  void start()
  {
    cout << "-------Welcome to secure-webserver CLIENT" << endl;
-   key = "";
    cout << "-> Enter your confidential AES shared key" << endl;
-   do{
-    cout << "->" << endl;
-    cin >> key;
-   }while(key == "");
+   cin >> chosenKey;
 
    while(true){
     cout << "Enter the hostname you want to visit (without the page indicator eg. google.com) : " << endl;
@@ -28,18 +24,28 @@ public:
     cout << "Enter the port: " << endl;
     int port;
     cin >> port;
-    
     httplib::Client cli(hostname, port);
+
     if (auto res = cli.Get(pindicator.c_str())) {
       if (res->status == 200) {
-        std::cout << "GOT (still encrypted): " << res->body << endl;
-        cout << "----------  END OF BODY ---------" << endl << endl;
-      }
-      else{cout << "ERROR HTTP IS NOT 200 !" << endl << endl;}
-    }   
-   }
-}
+        string encryptedAnswer = res->body;
+        std::vector<unsigned char> key = {chosenKey[0],chosenKey[1],chosenKey[2],chosenKey[3],chosenKey[4],chosenKey[5],chosenKey[6],chosenKey[7],chosenKey[8],chosenKey[9],chosenKey[10],chosenKey[11],chosenKey[12],chosenKey[13],chosenKey[14], chosenKey[15]};
+        const unsigned char iv[16] = {
+            0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+            0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+          };
+        const unsigned long encrypted_size = plusaes::get_padded_encrypted_size(encryptedAnswer.size());
+        unsigned long padded_size = 0;
+        std::vector<unsigned char> decrypted(encrypted_size);
+        plusaes::decrypt_cbc((unsigned char*)encryptedAnswer.data(), encryptedAnswer.size(), &key[0], key.size(), &iv, &decrypted[0], decrypted.size(), &padded_size);
+        string decryptedStr = string(decrypted.begin(), decrypted.end());
+        cout << decryptedStr << endl << "-------END OF FILE" << endl << endl;
+       }
+       else{cout << "ERROR HTTP IS NOT 200 !" << endl << endl;}
+     }
+    }
+ }
 
 private:
-  string key;
+  unsigned char chosenKey[16];
 };
