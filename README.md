@@ -1,2 +1,2 @@
 # secure-webserver
-A fast, secure webserver architecture 
+**secure-webserver** is composed of two elements : a server and a client.
