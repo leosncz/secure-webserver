@@ -35,7 +35,7 @@ public:
 
  void startConfig(){
   cout << "------------Welcome to secure-webserver !" << endl;
-  cout << "-> Every request must match the filename, for example : /hi -> hi.swsrv" << endl;
+  cout << "-> Every request must match the filename, for example : /hi -> /home/.../myappdirectory/hi" << endl;
   cout << "-> All files must lie within the application path" << endl;
   cout << "-> The secret AES key can be passed automatically by parameter (first)" << endl;
   cout << "-> secure-webserver will automatically open your default web-browser when detects a request" << endl;
