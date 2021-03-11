@@ -11,6 +11,7 @@ public:
  void start()
  {
    cout << "-------Welcome to secure-webserver CLIENT" << endl;
+    cout << "-> secure-webserver CLIENT will automatically open your default web-browser when request is done" << endl;
    cout << "-> Enter your confidential AES shared key" << endl << "->";
    cin >> chosenKey;
    while(true){

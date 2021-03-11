@@ -37,7 +37,6 @@ public:
   cout << "------------Welcome to secure-webserver !" << endl;
   cout << "-> All accessible files must exist within the application path" << endl;
   //cout << "-> The secret AES key can be passed automatically by parameter (first)" << endl;
-  cout << "-> secure-webserver will automatically open your default web-browser when detects a request" << endl;
   cout << "-> Never share your key !" << endl;
   cout << "-> What is your AES key ? (16 character)" << endl << "->";
   cin >> chosenKey;
