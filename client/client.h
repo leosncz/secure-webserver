@@ -11,17 +11,16 @@ public:
  void start()
  {
    cout << "-------Welcome to secure-webserver CLIENT" << endl;
-   cout << "-> Enter your confidential AES shared key" << endl;
+   cout << "-> Enter your confidential AES shared key" << endl << "->";
    cin >> chosenKey;
-
    while(true){
-    cout << "Enter the hostname you want to visit (without the page indicator eg. google.com) : " << endl << "->";
+    cout << "-> Enter the hostname you want to visit (without the page indicator eg. google.com) : " << endl << "->";
     string hostname;
     cin >> hostname;
-    cout << endl << "Enter the page indicator (eg. /search):" << endl << "->";
+    cout << "-> Enter the page indicator (eg. /search):" << endl << "->";
     string pindicator;
     cin >> pindicator;
-    cout << endl << "Enter the port: " << endl << "->";
+    cout << "-> Enter the port: " << endl << "->";
     int port;
     cin >> port;
     cout << endl;
@@ -41,11 +40,19 @@ public:
         std::vector<unsigned char> decrypted(encrypted_size);
         plusaes::decrypt_cbc((unsigned char*)encryptedAnswer.data(), encryptedAnswer.size(), &key[0], key.size(), &iv, &decrypted[0], decrypted.size(), &padded_size);
         string decryptedStr = string(decrypted.begin(), decrypted.end());
-        //
+        //shift by 1 to remove the first /
+        for(int i = 0; i < pindicator.length(); i++)
+        {
+		pindicator[i] = pindicator[i+1];
+        }
+        
         std::ofstream out(pindicator);
         out << decryptedStr;
         out.close();
-        cout << "File has been created !" << endl;
+        cout << "File" << pindicator << " has been created !" << endl;
+        string commandLine = "open ";
+        commandLine.append(pindicator);
+        system(commandLine.c_str());
        }
        else{cout << "ERROR HTTP IS NOT 200 (OK)!"  << endl;}
      }

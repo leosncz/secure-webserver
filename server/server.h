@@ -41,7 +41,6 @@ public:
   cout << "-> Never share your key !" << endl;
   cout << "-> What is your AES key ? (16 character)" << endl << "->";
   cin >> chosenKey;
-  cout << endl;
   return;
  }
 
