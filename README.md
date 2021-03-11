@@ -6,13 +6,13 @@ Then, the client will decrypt the received file and open it.
 **secure-werbserver** is usefull to setup an easy encrypted web-server without all the pain to setup any kind of certificate.</br>
 With this software, the only mandatory thing to do is to share a 16 character long key between the client and the server.</br> 
 # Example
-Server configuration : 
+Server configuration :</br>
 ![Server conf](screenshot_server.png)
-</br>What you see when you navigate with your default browser :
+What you see when you navigate with your default browser :</br>
 ![Server conf](screenshot_encrypted.png)
-</br>Client configuration :
+Client configuration :</br>
 ![Server conf](screenshot_client.png)
-</br>The final result when you access the website from the client :
+The final result when you access the website from the client :</br>
 ![Server conf](screenshot_result.png)
 # Licences
 - plusaes (for aes encryption-decryption) - MIT
