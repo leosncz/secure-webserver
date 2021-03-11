@@ -15,15 +15,17 @@ public:
    cin >> chosenKey;
 
    while(true){
-    cout << "Enter the hostname you want to visit (without the page indicator eg. google.com) : " << endl;
+    cout << "Enter the hostname you want to visit (without the page indicator eg. google.com) : " << endl << "->";
     string hostname;
     cin >> hostname;
-    cout << "Enter the page indicator (eg. /search):" << endl;
+    cout << endl << "Enter the page indicator (eg. /search):" << endl << "->";
     string pindicator;
     cin >> pindicator;
-    cout << "Enter the port: " << endl;
+    cout << endl << "Enter the port: " << endl << "->";
     int port;
     cin >> port;
+    cout << endl;
+
     httplib::Client cli(hostname, port);
 
     if (auto res = cli.Get(pindicator.c_str())) {
@@ -39,9 +41,13 @@ public:
         std::vector<unsigned char> decrypted(encrypted_size);
         plusaes::decrypt_cbc((unsigned char*)encryptedAnswer.data(), encryptedAnswer.size(), &key[0], key.size(), &iv, &decrypted[0], decrypted.size(), &padded_size);
         string decryptedStr = string(decrypted.begin(), decrypted.end());
-        cout << decryptedStr << endl << "-------END OF FILE" << endl << endl;
+        //
+        std::ofstream out(pindicator);
+        out << decryptedStr;
+        out.close();
+        cout << "File has been created !" << endl;
        }
-       else{cout << "ERROR HTTP IS NOT 200 !" << endl << endl;}
+       else{cout << "ERROR HTTP IS NOT 200 (OK)!"  << endl;}
      }
     }
  }
