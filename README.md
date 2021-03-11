@@ -8,14 +8,14 @@ With this software, the only mandatory thing to do is to share a 16 character lo
 # Example
 Server configuration :
 ![Server conf](screenshot_server.png)
-</br>
+<br/><br/>
 What you see when you navigate with your default browser :
 ![Server conf](screenshot_encrypted.png)
-
+<br/><br/>
 Client configuration :
 ![Server conf](screenshot_client.png)
-
-The final result when you access the website from the client :</br>
+<br/><br/>
+The final result when you access the website from the client :
 ![Server conf](screenshot_result.png)
 
 # Licences
