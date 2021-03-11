@@ -21,7 +21,6 @@ Client configuration :
 The final result when you access the website from the client :
 <br/><br/>
 ![Server conf](screenshot_result.png)
-
 # Licences
 - plusaes (for aes encryption-decryption) - MIT
 - cpp-httplib (for http request handling) - MIT
