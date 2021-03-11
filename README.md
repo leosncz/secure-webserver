@@ -7,15 +7,19 @@ Then, the client will decrypt the received file and open it.
 With this software, the only mandatory thing to do is to share a 16 character long key between the client and the server.</br> 
 # Example
 Server configuration :
+<br/><br/>
 ![Server conf](screenshot_server.png)
 <br/><br/>
 What you see when you navigate with your default browser :
+<br/><br/>
 ![Server conf](screenshot_encrypted.png)
 <br/><br/>
 Client configuration :
+<br/><br/>
 ![Server conf](screenshot_client.png)
 <br/><br/>
 The final result when you access the website from the client :
+<br/><br/>
 ![Server conf](screenshot_result.png)
 
 # Licences
