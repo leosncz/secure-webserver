@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 #include "httplib.h"
 #include "plusaes.hpp"
 using namespace std;
@@ -46,11 +47,11 @@ public:
         {
 		pindicator[i] = pindicator[i+1];
         }
-        
-        std::ofstream out(pindicator);
-        out << decryptedStr;
-        out.close();
-        cout << "File" << pindicator << " has been created !" << endl;
+        fstream file;
+        file.open (pindicator, ios::out | ios::binary );
+	file << decryptedStr;
+	file.close();
+        cout << "File " << pindicator << " has been created !" << endl;
         string commandLine = "open ";
         commandLine.append(pindicator);
         system(commandLine.c_str());

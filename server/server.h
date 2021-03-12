@@ -30,7 +30,7 @@ public:
         };
         const unsigned long encrypted_size = plusaes::get_padded_encrypted_size(fileContent.size());
         std::vector<unsigned char> encrypted(encrypted_size);
-        plusaes::encrypt_cbc((unsigned char*)fileContent.data(), fileContent.size(), &key[0], key.size(), &iv, &encrypted[0], encrypted.size(), true);
+        plusaes::encrypt_cbc((unsigned char*)fileContent.data(), fileContent.size(), &key[0], key.size(), &iv, &encrypted[0], encrypted.size(), true); 
         fileContent = string(encrypted.begin(), encrypted.end());
         res.set_content(fileContent, "text/html");
       }
