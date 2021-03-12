@@ -11,11 +11,11 @@ class client
 public:
  void start()
  {
-   cout << "-------Welcome to secure-webserver CLIENT" << endl;
+    cout << "-------Welcome to secure-webserver CLIENT" << endl;
     cout << "-> secure-webserver CLIENT will automatically open your default web-browser when request is done" << endl;
-   cout << "-> Enter your confidential AES shared key" << endl << "->";
-   cin >> chosenKey;
-   while(true){
+    cout << "-> Enter your confidential AES shared key" << endl << "->";
+    cin >> chosenKey;
+    while(true){
     cout << "-> Enter the hostname you want to visit (without the page indicator eg. google.com) : " << endl << "->";
     string hostname;
     cin >> hostname;
@@ -47,6 +47,10 @@ public:
         {
 		pindicator[i] = pindicator[i+1];
         }
+	// Fix binary ascii error (happens when using php) TODO: discover why
+	int range = decryptedStr.size();
+	for(int i=0;i<decryptedStr.size();i++){if(decryptedStr[i] == 0){decryptedStr[i] = ' ';}}
+	//Write file to open it
         fstream file;
         file.open (pindicator, ios::out | ios::binary );
 	file << decryptedStr;
